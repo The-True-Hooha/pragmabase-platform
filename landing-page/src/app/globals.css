@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F4F7FF;
+  --color-accent: #2563EB;
+  --color-accent-hover: #1D4ED8;
+  --color-ink: #0A0A0A;
+  --color-muted: #6B7280;
+  --color-border: #E5E9F2;
+  --color-code-bg: #0F172A;
+  --color-code-text: #7DD3FC;
+  --color-pass: #10B981;
+  --color-fail: #EF4444;
+
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+:root {
+  --bg: #FFFFFF;
+  --bg-alt: #F4F7FF;
+  --accent: #2563EB;
+  --accent-hover: #1D4ED8;
+  --ink: #0A0A0A;
+  --muted: #6B7280;
+  --border: #E5E9F2;
+  --code-bg: #0F172A;
+  --code-text: #7DD3FC;
+  --pass: #10B981;
+  --fail: #EF4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ── MDX / Blog prose styles ────────────────── */
+.prose-aegis {
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 100%;
+}
+
+.prose-aegis h1,
+.prose-aegis h2,
+.prose-aegis h3,
+.prose-aegis h4 {
+  font-family: var(--font-display, 'Bricolage Grotesque', sans-serif);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-aegis h2 { font-size: 1.75rem; }
+.prose-aegis h3 { font-size: 1.3rem; }
+.prose-aegis h4 { font-size: 1.1rem; }
+
+.prose-aegis p {
+  margin-bottom: 1.4rem;
+  color: #374151;
+}
+
+.prose-aegis a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-aegis a:hover {
+  color: var(--accent-hover);
+}
+
+.prose-aegis strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.prose-aegis ul,
+.prose-aegis ol {
+  margin: 1.25rem 0 1.4rem 1.5rem;
+  space-y: 0.4rem;
+}
+
+.prose-aegis ul { list-style-type: disc; }
+.prose-aegis ol { list-style-type: decimal; }
+
+.prose-aegis li {
+  margin-bottom: 0.4rem;
+  color: #374151;
+}
+
+.prose-aegis code {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.82em;
+  background: #EEF2FF;
+  color: #2563EB;
+  padding: 0.15em 0.45em;
+  border-radius: 4px;
+  border: 1px solid #DBEAFE;
+}
+
+.prose-aegis pre {
+  background: #0A0F1E;
+  border-radius: 12px;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.prose-aegis pre code {
+  background: transparent;
+  color: #93C5FD;
+  border: none;
+  padding: 0;
+  font-size: 0.85em;
+  line-height: 1.7;
+}
+
+.prose-aegis blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1.25rem;
+  margin: 1.75rem 0;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.prose-aegis hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+.prose-aegis table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.75rem 0;
+  font-size: 0.9rem;
+}
+
+.prose-aegis th {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.prose-aegis td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  color: #374151;
+}
+
+.prose-aegis tr:nth-child(even) td {
+  background: var(--bg-alt);
+}
+
+.prose-aegis img {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin: 1.75rem 0;
+  max-width: 100%;
+}

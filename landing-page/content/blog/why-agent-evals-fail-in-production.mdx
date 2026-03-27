@@ -1,0 +1,101 @@
+---
+title: Why agent evals that pass in development fail in production
+date: "2025-03-18"
+author: Priya Sundaram
+role: Co-founder & CTO
+category: Engineering
+excerpt: Most eval failures are not about the model. They are about the environment — network mocking, tool state, and context bleed between runs. Here is how to fix it.
+readTime: 8 min read
+handle: "@priya_aegis"
+---
+
+You spend two weeks writing evals. They all pass in your local environment. You merge to main, the agent ships, and within 48 hours you get a Slack message: *"the agent is doing something weird."*
+
+This is not a model problem. This is an infrastructure problem — and it's one of the most common failure modes we see across every team building agents in production.
+
+## The three root causes
+
+### 1. Network mocking creates false environments
+
+Most eval frameworks let you mock external API calls. This seems like a good idea — it makes tests fast, deterministic, and cheap to run. But it creates a fundamental gap between the environment your agent is tested in and the environment it runs in.
+
+When your mock returns `{"status": "success"}` in 2ms, you're not testing whether your agent handles:
+
+- Partial responses from flaky APIs
+- Latency-sensitive tool call chains
+- Authentication token expiry mid-run
+- Rate limiting and backoff behavior
+
+Real evals need real network calls — or at minimum, a sandbox environment that faithfully simulates the failure modes of real infrastructure.
+
+```typescript
+// ❌ Don't do this in production evals
+const mockTool = jest.fn().mockResolvedValue({ status: 'success' })
+
+// ✅ Use a sandboxed real environment
+const result = await aegis.eval.run({
+  suite: 'production-v2',
+  sandbox: true, // Firecracker VM, real network, real tools
+})
+```
+
+### 2. Tool state leaks between runs
+
+Agent evals are stateful in a way that unit tests are not. When your agent calls `create_file()`, `append_database_row()`, or `send_email()`, it modifies state. If your eval runner doesn't tear down and restore that state between runs, you get bleed.
+
+Run 3 sees state left by run 1. Your pass rate looks like 94% when the real pass rate — on a clean environment — is 81%.
+
+The fix is complete environment isolation between eval runs. Not just clearing variables. Not just rolling back a database transaction. A fresh VM for every run.
+
+```bash
+# Aegis creates a new Firecracker microVM per run
+# Cold start: 1.8s
+# Memory isolation: complete
+# Network isolation: complete
+$ aegis eval run --suite production-v2 --isolation=vm
+```
+
+### 3. Context window assumptions that don't hold at scale
+
+Most eval suites test your agent on short, clean conversations. Production agents deal with:
+
+- Conversations 40+ turns deep
+- Tool results that are 8,000 tokens long
+- Competing instructions from system prompt and user message
+- Malformed inputs from real users
+
+If your eval suite doesn't include these edge cases, you're not measuring what matters.
+
+## What good eval infrastructure looks like
+
+After working with 15+ teams building production agents, here's what we've found separates teams that catch regressions before users do from teams that don't.
+
+### Full sandbox isolation
+
+Every eval run in a fresh, isolated environment. Not a Docker container — a microVM. The difference matters because container escape exploits are real, and tool-calling agents frequently interact with the filesystem, network, and other system resources.
+
+### Continuous eval in CI
+
+Eval suites that only run manually are eval suites that stop running. Wire your eval suite into your CI pipeline so it runs on every PR. Block merges when pass rate drops below your threshold.
+
+```yaml
+# .github/workflows/eval.yml
+- name: Run Aegis eval suite
+  run: aegis eval run --suite production-v2 --fail-under 95
+```
+
+### Regression detection, not just pass rate
+
+Pass rate is a lagging indicator. What you want is a delta — did this PR change the behavior of my agent in any way I didn't expect? Aegis compares eval results against the baseline from your main branch and flags regressions, even when overall pass rate is unchanged.
+
+## The uncomfortable truth
+
+Most agent eval failures are not discovered by the eval suite. They're discovered by users. That's not a model problem. That's a measurement problem.
+
+The teams shipping reliable agents are the teams that treat eval infrastructure as seriously as they treat their inference infrastructure. The bar is not "our evals pass locally." The bar is "we would catch this regression before it ships."
+
+That's what Aegis is built to do.
+
+---
+
+*Priya Sundaram is co-founder and CTO of Aegis. She previously worked on distributed systems at Google Brain and holds a PhD in systems from CMU.*

@@ -1,0 +1,75 @@
+---
+title: How we built sub-2s sandbox cold starts with Firecracker
+date: "2025-03-10"
+author: Leo Hartmann
+role: Head of Engineering
+category: Infrastructure
+excerpt: The story of optimizing VM initialization for agent workloads — from 8 seconds to under 2.
+readTime: 6 min read
+handle: "@leo_aegis"
+---
+
+When we first started building Aegis, our sandbox cold start time was 8 seconds. That's fine for a nightly test run. It's not fine when you're blocking a CI pipeline and a developer is waiting on a PR.
+
+This is the story of how we got it under 2 seconds.
+
+## Why Firecracker and not containers
+
+The short answer: tool-calling agents need real isolation.
+
+A container shares the host kernel. If an agent eval calls a malicious tool, executes arbitrary shell commands, or triggers a kernel exploit — and these are realistic scenarios when you're running untrusted agent code — a container doesn't protect you.
+
+Firecracker microVMs give you hardware-level memory isolation with a minimal attack surface. The Firecracker VMM is ~50,000 lines of Rust and exposes no unnecessary kernel features. AWS Lambda and Fly.io both use it in production.
+
+The cost is cold start latency. Containers start in milliseconds. A naive Firecracker VM starts in 8+ seconds.
+
+## The optimization journey
+
+### Snapshot and restore
+
+The biggest win came from VM snapshots. Instead of booting a fresh VM for every eval run, we boot one VM, initialize the runtime environment (Node.js or Python, aegis SDK, dependencies), take a memory snapshot, and restore from that snapshot for subsequent runs.
+
+Restore from snapshot: ~400ms.
+
+```rust
+// Simplified snapshot restore flow
+let vm = FirecrackerVm::restore_from_snapshot(&SNAPSHOT_PATH)?;
+vm.configure_network(eval_run_id)?;
+vm.start()?;
+```
+
+### Minimal kernel
+
+The default Linux kernel is ~8MB compressed. It initializes hundreds of subsystems an agent eval will never use — Bluetooth, USB, SCSI. We built a stripped kernel configured specifically for agent workloads: network, filesystem, process isolation, nothing else.
+
+Kernel size: 1.2MB. Boot time contribution: ~80ms.
+
+### Overlayfs for filesystem
+
+Each eval run gets a copy-on-write overlay on top of a shared base filesystem. No copying. Writes go to a thin layer that's discarded on teardown. The base layer is pre-warmed in memory.
+
+### Pre-warming
+
+We maintain a pool of pre-initialized VMs ready to accept eval runs. When a run comes in, it claims a VM from the pool. When the run finishes, the VM is torn down and a fresh one takes its place.
+
+Pool size is dynamically scaled based on queue depth. During a PR merge rush, we spin up more. At 3am, we scale down to save cost.
+
+## The result
+
+| Stage | Before | After |
+|---|---|---|
+| Kernel boot | 3.2s | 80ms |
+| Runtime init | 3.8s | 0ms (snapshot) |
+| Network setup | 0.6s | 120ms |
+| Pool wait | 0s | ~0ms (pre-warmed) |
+| **Total** | **8.1s** | **~1.8s** |
+
+## What we learned
+
+The biggest insight was that most cold start time wasn't in the VM — it was in the runtime. Booting Node.js, loading `node_modules`, initializing the aegis SDK — that's where 4 seconds were hiding. Snapshots eliminated all of it.
+
+The second insight was that pre-warming changes the user experience more than raw speed does. Going from 1.8s to 0.3s cold start wouldn't meaningfully change how a CI pipeline feels. But going from "you always wait" to "it's usually instant" changes everything.
+
+---
+
+*Leo Hartmann is Head of Engineering at Aegis. He previously led edge runtime infrastructure at Vercel.*
