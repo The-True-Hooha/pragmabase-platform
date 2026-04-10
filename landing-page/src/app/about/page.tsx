@@ -3,142 +3,122 @@ import { Footer } from '@/components/footer'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About — Aegis',
-  description: 'The team and mission behind Aegis agent evaluation infrastructure.',
+  title: 'About — Pragmabase',
+  description: 'The team and mission behind Pragmabase — the economic + cognitive OS for autonomous agents.',
 }
 
 const team = [
   {
-    name: 'Aryan Mehta',
-    initials: 'AM',
-    role: 'Co-founder & CEO',
-    bio: 'Previously ML Platform at Stripe. Built agent eval systems for payment fraud detection at scale.',
-    gradient: 'linear-gradient(135deg, #0F1F5C, #2563EB)',
+    name: 'David Ogar',
+    initials: 'DO',
+    role: 'Founder & CEO',
+    bio: 'Built distributed systems at scale. Became obsessed with why agents keep forgetting things and spending money blindly. Started Pragmabase to fix both.',
+    color: '#7C3AED',
   },
   {
-    name: 'Priya Sundaram',
-    initials: 'PS',
-    role: 'Co-founder & CTO',
-    bio: 'Ex-Google Brain. PhD in distributed systems. Designed the Firecracker sandbox runtime at the core of Aegis.',
-    gradient: 'linear-gradient(135deg, #1740A6, #3B82F6)',
+    name: 'Rin Takahashi',
+    initials: 'RT',
+    role: 'Head of Protocol',
+    bio: 'Ex-Stellar core contributor. Designed the x402 payment protocol from first principles. Believes micropayments are the missing primitive for autonomous systems.',
+    color: '#A8FF3E',
   },
   {
-    name: 'Leo Hartmann',
+    name: 'Lars Hoffmann',
     initials: 'LH',
-    role: 'Head of Engineering',
-    bio: 'Previously Staff Engineer at Vercel. Led edge runtime infrastructure serving 100M+ requests/day.',
-    gradient: 'linear-gradient(135deg, #2563EB, #60A5FA)',
+    role: 'Head of Infrastructure',
+    bio: 'Systems engineer. Previously built high-throughput settlement infrastructure at a fintech. Architected the Soroban guardrail system.',
+    color: '#818CF8',
   },
   {
-    name: 'Amara Osei',
-    initials: 'AO',
+    name: 'Priya Mehta',
+    initials: 'PM',
     role: 'Head of Research',
-    bio: 'Built LLM evaluation benchmarks at Cohere. Author of AgentBench, the industry standard eval suite.',
-    gradient: 'linear-gradient(135deg, #1740A6, #7C3AED)',
+    bio: 'AI researcher focused on agent memory and decision-making. Author of the dual-state architecture paper. Believes agents should evolve, not reset.',
+    color: '#F59E0B',
   },
 ]
 
 const values = [
-  { title: 'Measure first', desc: "You can't improve what you can't measure. Every feature starts with a clear eval signal." },
-  { title: 'Builders over buzzwords', desc: "We build tools for engineers. If it doesn't run in CI, we didn't ship it." },
-  { title: 'Honest infrastructure', desc: 'No magic. No opaque scores. Every number in Aegis is reproducible and explainable.' },
-  { title: 'Open by default', desc: 'Our eval specs are open, our benchmarks are published, and our SDK is MIT licensed.' },
+  { title: 'Agents are economic actors', desc: 'Every autonomous agent will eventually interact with economic systems. We build for that reality now.' },
+  { title: 'Memory = identity', desc: "An agent that forgets is a tool. An agent that remembers is a collaborator. We build collaborators." },
+  { title: 'Test before it costs you', desc: 'The Reliability Lab exists because financial mistakes are expensive. Simulate first, deploy with confidence.' },
+  { title: 'Open protocols over lock-in', desc: 'x402 is an open standard. Soroban is public infrastructure. We build on open rails.' },
 ]
 
 const milestones = [
-  { year: '2023', event: 'Founded in San Francisco. First eval sandbox prototype shipped in 6 weeks.' },
-  { year: 'Q1 2024', event: 'Seed round closed. Joined 15 design partners building production agents.' },
-  { year: 'Q3 2024', event: 'Launched public beta. Reached 1M evals run in the first month.' },
-  { year: 'Q1 2025', event: '#1 on AgentBench. 2,400 GitHub stars. 10M+ evals run.' },
+  { year: '2024 Q3', event: 'Founded in Lagos. First dual-state agent prototype deployed on Stellar testnet.' },
+  { year: '2024 Q4', event: 'x402 protocol specification published. First Soroban guardrail contracts deployed.' },
+  { year: '2025 Q1', event: 'Public beta launched. Reached 500K simulated agent transactions in the first month.' },
+  { year: '2025 Q2', event: 'Qdrant memory layer integrated. Team memory across multi-agent systems goes live.' },
 ]
-
-const investors = ['Sequoia Scout', 'YC W24', 'AIX Ventures', 'Quiet Capital']
 
 export default function AboutPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main style={{ background: '#0A0A0F' }}>
 
         {/* Hero */}
-        <section
-          className="relative py-24 overflow-hidden"
-          style={{ background: 'linear-gradient(160deg, #0F1F5C 0%, #1740A6 45%, #2563EB 100%)' }}
-        >
-          <svg className="absolute inset-0 w-full h-full opacity-[0.12]" aria-hidden="true">
-            <defs>
-              <pattern id="about-grid" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
-                <path d="M 48 0 L 0 0 0 48" fill="none" stroke="white" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#about-grid)" />
-          </svg>
+        <section className="relative py-24 overflow-hidden" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
+            backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
+          }} />
+          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[700px] h-[500px] pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse, rgba(124,58,237,0.12) 0%, transparent 65%)' }} />
 
-          {/* Decorative hexagons */}
-          {[{ x: '88%', y: '12%', s: 80 }, { x: '6%', y: '65%', s: 48 }, { x: '92%', y: '70%', s: 36 }].map((h, i) => (
-            <svg key={i} width={h.s} height={h.s} viewBox="0 0 20 20" className="absolute pointer-events-none opacity-10"
-              style={{ left: h.x, top: h.y }} aria-hidden="true">
-              <polygon points="10,1 18.5,5.5 18.5,14.5 10,19 1.5,14.5 1.5,5.5" stroke="white" strokeWidth="1" fill="none" />
-            </svg>
-          ))}
-
-          <div className="relative max-w-[1280px] mx-auto px-8">
+          <div className="relative max-w-[1280px] mx-auto px-6 md:px-8">
             <div className="flex justify-between text-xs uppercase tracking-widest mb-12 pb-4 font-mono"
-              style={{ color: 'rgba(255,255,255,0.3)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-              <span>ABOUT</span>
-              <span>AEGIS</span>
+              style={{ color: 'rgba(255,255,255,0.18)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+              <span>About</span>
+              <span>Pragmabase</span>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h1
-                  className="font-display font-extrabold text-white leading-tight mb-5"
-                  style={{ fontSize: 'clamp(36px, 5vw, 64px)' }}
-                >
-                  We build the<br />reliability layer for<br />production agents.
+                <div className="inline-block font-mono text-[10px] font-bold uppercase tracking-widest mb-5 px-2.5 py-1.5 rounded-full"
+                  style={{ background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)', color: '#C4B5FD' }}>
+                  Our Mission
+                </div>
+                <h1 className="font-display font-bold text-white leading-tight mb-5" style={{ fontSize: 'clamp(32px,4.5vw,60px)' }}>
+                  We build the economic<br />+ cognitive OS for<br />
+                  <span style={{ color: '#C4B5FD' }}>autonomous agents.</span>
                 </h1>
-                <p className="text-base leading-relaxed mb-6 max-w-md" style={{ color: 'rgba(255,255,255,0.6)' }}>
-                  Aegis started from a frustration: every team building agents was reinventing the same
-                  eval infrastructure. We&apos;re here to make that a solved problem.
+                <p className="text-base leading-relaxed mb-8 max-w-md" style={{ color: '#6B6B85' }}>
+                  Pragmabase started from a simple observation: agents today are economically blind and
+                  cognitively amnesiac. Every run starts from scratch. Every payment is manual. We built
+                  the infrastructure layer that changes that.
                 </p>
-                <div className="flex flex-wrap gap-4">
-                  {investors.map((inv) => (
-                    <span key={inv} className="text-xs font-mono px-3 py-1.5 rounded-full"
-                      style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.6)' }}>
-                      {inv}
+                <div className="flex flex-wrap gap-3">
+                  {['Stellar Ecosystem', 'Qdrant Partner', 'x402 Protocol'].map((badge) => (
+                    <span key={badge} className="text-xs font-mono px-3 py-1.5 rounded-full"
+                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.45)' }}>
+                      {badge}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Mission illustration */}
               <div className="hidden lg:flex items-center justify-center">
                 <MissionIllustration />
               </div>
             </div>
           </div>
-
-          <div aria-hidden="true" style={{ lineHeight: 0, marginTop: '48px' }}>
-            <svg viewBox="0 0 1440 56" preserveAspectRatio="none" className="w-full block" style={{ height: '56px' }}>
-              <path d="M0,28 C360,56 720,0 1080,28 C1260,42 1380,14 1440,28 L1440,56 L0,56 Z" fill="#F4F7FF" />
-            </svg>
-          </div>
         </section>
 
-        {/* Numbers */}
-        <section className="py-16 bg-bg-alt border-b border-border">
-          <div className="max-w-[1280px] mx-auto px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 border border-border rounded-2xl overflow-hidden">
+        {/* Stats */}
+        <section className="py-16" style={{ background: '#0F0F18', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="max-w-[1280px] mx-auto px-6 md:px-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { val: '10M+', label: 'Evals run' },
-                { val: '2,400+', label: 'GitHub stars' },
-                { val: '15+', label: 'Design partners' },
-                { val: '<2s', label: 'Sandbox cold start' },
-              ].map((s, i) => (
-                <div key={s.label}
-                  className={`py-8 px-8 bg-white text-center ${i < 3 ? 'border-r border-border' : ''}`}>
-                  <div className="font-mono font-bold text-[36px] text-accent leading-none mb-1">{s.val}</div>
-                  <div className="text-xs uppercase tracking-widest text-muted font-mono">{s.label}</div>
+                { val: '500K+', label: 'Transactions simulated', color: '#A8FF3E' },
+                { val: '< 100ms', label: 'Avg wallet settlement', color: '#C4B5FD' },
+                { val: '99.9%', label: 'Platform uptime', color: '#818CF8' },
+                { val: 'x402', label: 'Open payment standard', color: '#F59E0B' },
+              ].map((s) => (
+                <div key={s.label} className="text-center">
+                  <div className="font-display font-bold text-3xl md:text-4xl mb-1" style={{ color: s.color }}>{s.val}</div>
+                  <div className="text-xs font-mono" style={{ color: '#6B6B85' }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -146,33 +126,33 @@ export default function AboutPage() {
         </section>
 
         {/* Mission + values */}
-        <section className="py-24 bg-bg-alt">
-          <div className="max-w-[1280px] mx-auto px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <section className="py-24" style={{ background: '#0A0A0F' }}>
+          <div className="max-w-[1280px] mx-auto px-6 md:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 items-start">
               <div>
-                <p className="text-xs uppercase tracking-widest text-muted font-mono mb-4">Our Mission</p>
-                <h2 className="font-display font-bold text-[32px] md:text-[44px] text-ink leading-tight mb-6">
-                  Make agent reliability<br />
-                  <span className="text-accent">a first-class concern.</span>
-                </h2>
-                <p className="text-muted leading-relaxed mb-4 text-sm">
-                  The AI industry has invested billions in making agents more capable — but almost nothing
-                  in making them reliably correct in production. That gap is what Aegis fills.
+                <p className="font-mono text-[10px] font-bold uppercase tracking-widest mb-4" style={{ color: 'rgba(255,255,255,0.2)' }}>
+                  What we believe
                 </p>
-                <p className="text-muted leading-relaxed text-sm">
-                  We believe every agent team deserves the same observability, testing infrastructure, and
-                  regression protection that software teams take for granted.
+                <h2 className="font-display font-bold leading-tight mb-6" style={{ fontSize: 'clamp(24px,3.5vw,40px)', color: '#EDECF4' }}>
+                  The next wave of AI is<br />
+                  <span style={{ color: '#C4B5FD' }}>economically active.</span>
+                </h2>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: '#6B6B85' }}>
+                  The AI industry has invested billions in making agents more capable — but almost nothing
+                  in giving them economic autonomy or persistent identity. Agents that forget everything
+                  and can&apos;t pay for resources aren&apos;t truly autonomous.
+                </p>
+                <p className="text-sm leading-relaxed" style={{ color: '#6B6B85' }}>
+                  Pragmabase provides the missing layer: Stellar-native wallets, Qdrant-backed memory, and
+                  Soroban-enforced guardrails. Agents that remember, pay, and coordinate.
                 </p>
               </div>
-              <div className="grid grid-cols-2 gap-0 border border-border rounded-2xl overflow-hidden">
-                {values.map((v, i) => (
-                  <div key={v.title}
-                    className={`p-6 bg-white ${i % 2 === 0 ? 'border-r border-border' : ''} ${i < 2 ? 'border-b border-border' : ''}`}>
-                    <div className="w-6 h-6 rounded-md bg-accent/10 flex items-center justify-center mb-3">
-                      <div className="w-2 h-2 rounded-full bg-accent" />
-                    </div>
-                    <p className="text-sm font-semibold text-ink mb-1.5">{v.title}</p>
-                    <p className="text-xs text-muted leading-relaxed">{v.desc}</p>
+              <div className="grid grid-cols-2 gap-4">
+                {values.map((v) => (
+                  <div key={v.title} className="rounded-2xl p-5" style={{ background: '#14141F', border: '1px solid rgba(255,255,255,0.07)' }}>
+                    <div className="w-1.5 h-1.5 rounded-full mb-3" style={{ background: '#7C3AED' }} />
+                    <p className="text-sm font-bold mb-1.5" style={{ color: '#EDECF4' }}>{v.title}</p>
+                    <p className="text-xs leading-relaxed" style={{ color: '#6B6B85' }}>{v.desc}</p>
                   </div>
                 ))}
               </div>
@@ -181,31 +161,31 @@ export default function AboutPage() {
         </section>
 
         {/* Team */}
-        <section className="py-24 bg-bg">
-          <div className="max-w-[1280px] mx-auto px-8">
-            <div className="flex justify-between text-xs uppercase tracking-widest text-muted mb-12 pb-4 border-b border-border font-mono">
-              <span>TEAM</span>
+        <section className="py-24" style={{ background: '#0F0F18', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="max-w-[1280px] mx-auto px-6 md:px-8">
+            <div className="flex justify-between text-xs uppercase tracking-widest mb-12 pb-4 font-mono"
+              style={{ color: 'rgba(255,255,255,0.18)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+              <span>Team</span>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-              <h2 className="font-display font-bold text-[32px] md:text-[44px] text-ink leading-tight">
-                Built by people who&apos;ve<br />felt the pain.
+            <div className="grid lg:grid-cols-2 gap-12 mb-12">
+              <h2 className="font-display font-bold leading-tight" style={{ fontSize: 'clamp(24px,3.5vw,40px)', color: '#EDECF4' }}>
+                Built by people who&apos;ve<br />shipped broken agents.
               </h2>
-              <p className="text-muted text-sm leading-relaxed self-end pb-1">
-                We&apos;ve all worked on teams that shipped broken agents to production. We built Aegis
-                because we wanted a better answer than &ldquo;we&apos;ll add more tests.&rdquo;
+              <p className="text-sm leading-relaxed self-end" style={{ color: '#6B6B85' }}>
+                We&apos;ve all spent time watching agents make expensive mistakes in production.
+                We built Pragmabase because &ldquo;add more guardrails&rdquo; wasn&apos;t a good enough answer.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-border rounded-2xl overflow-hidden">
-              {team.map((member, i) => (
-                <div key={member.name}
-                  className={`p-7 bg-white ${i < team.length - 1 ? 'border-r border-border' : ''}`}>
-                  <div className="w-12 h-12 rounded-xl mb-5 flex items-center justify-center font-display font-bold text-lg text-white"
-                    style={{ background: member.gradient }}>
-                    {member.initials}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {team.map((member) => (
+                <div key={member.name} className="rounded-2xl p-6" style={{ background: '#14141F', border: '1px solid rgba(255,255,255,0.07)' }}>
+                  <div className="w-12 h-12 rounded-xl mb-4 flex items-center justify-center font-display font-bold text-lg text-white"
+                    style={{ background: member.color + '25', border: `1px solid ${member.color}40` }}>
+                    <span style={{ color: member.color }}>{member.initials}</span>
                   </div>
-                  <p className="text-sm font-semibold text-ink mb-0.5">{member.name}</p>
-                  <p className="text-xs text-accent font-mono mb-3">{member.role}</p>
-                  <p className="text-xs text-muted leading-relaxed">{member.bio}</p>
+                  <p className="text-sm font-bold mb-0.5" style={{ color: '#EDECF4' }}>{member.name}</p>
+                  <p className="text-xs font-mono mb-3" style={{ color: member.color }}>{member.role}</p>
+                  <p className="text-xs leading-relaxed" style={{ color: '#6B6B85' }}>{member.bio}</p>
                 </div>
               ))}
             </div>
@@ -213,21 +193,22 @@ export default function AboutPage() {
         </section>
 
         {/* Timeline */}
-        <section className="py-24 bg-bg-alt">
-          <div className="max-w-[1280px] mx-auto px-8">
-            <div className="flex justify-between text-xs uppercase tracking-widest text-muted mb-12 pb-4 border-b border-border font-mono">
-              <span>TIMELINE</span>
+        <section className="py-24" style={{ background: '#0A0A0F', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="max-w-[1280px] mx-auto px-6 md:px-8">
+            <div className="flex justify-between text-xs uppercase tracking-widest mb-12 pb-4 font-mono"
+              style={{ color: 'rgba(255,255,255,0.18)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+              <span>Timeline</span>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <h2 className="font-display font-bold text-[32px] md:text-[44px] text-ink leading-tight">
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              <h2 className="font-display font-bold leading-tight" style={{ fontSize: 'clamp(24px,3.5vw,40px)', color: '#EDECF4' }}>
                 The story so far.
               </h2>
-              <div className="space-y-0 border border-border rounded-2xl overflow-hidden">
+              <div className="space-y-0 rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.07)' }}>
                 {milestones.map((m, i) => (
-                  <div key={m.year}
-                    className={`flex items-start gap-6 p-6 bg-white ${i < milestones.length - 1 ? 'border-b border-border' : ''}`}>
-                    <span className="font-mono text-xs text-accent font-semibold shrink-0 pt-0.5 w-16">{m.year}</span>
-                    <p className="text-sm text-ink leading-relaxed">{m.event}</p>
+                  <div key={m.year} className="flex items-start gap-6 p-6"
+                    style={{ borderBottom: i < milestones.length - 1 ? '1px solid rgba(255,255,255,0.06)' : undefined, background: '#14141F' }}>
+                    <span className="font-mono text-xs font-bold shrink-0 pt-0.5 w-16" style={{ color: '#7C3AED' }}>{m.year}</span>
+                    <p className="text-sm leading-relaxed" style={{ color: '#9E9EB8' }}>{m.event}</p>
                   </div>
                 ))}
               </div>
@@ -236,38 +217,38 @@ export default function AboutPage() {
         </section>
 
         {/* Hiring CTA */}
-        <section
-          className="relative py-24 overflow-hidden"
-          style={{ background: 'linear-gradient(160deg, #0F1F5C 0%, #1740A6 50%, #2563EB 100%)' }}
-        >
-          <svg className="absolute inset-0 w-full h-full opacity-[0.1]" aria-hidden="true">
-            <defs>
-              <pattern id="about-cta-grid" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
-                <path d="M 48 0 L 0 0 0 48" fill="none" stroke="white" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#about-cta-grid)" />
-          </svg>
-          <div className="relative max-w-[1280px] mx-auto px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <section className="relative py-24 overflow-hidden"
+          style={{ background: 'linear-gradient(145deg, #0D0520 0%, #1A0A3E 30%, #2D1463 65%, #1A0A3E 100%)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="absolute inset-0 pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse at 50% 60%, rgba(124,58,237,0.3) 0%, transparent 65%)' }} />
+          <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
+            backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
+          }} />
+
+          <div className="relative max-w-[1280px] mx-auto px-6 md:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="font-display font-extrabold text-white leading-tight mb-4"
-                  style={{ fontSize: 'clamp(28px, 4vw, 52px)' }}>
-                  We&apos;re hiring builders<br />who care about<br />reliability.
+                <div className="inline-block font-mono text-[10px] font-bold uppercase tracking-widest mb-5 px-2.5 py-1.5 rounded-full"
+                  style={{ background: 'rgba(168,255,62,0.1)', border: '1px solid rgba(168,255,62,0.25)', color: '#A8FF3E' }}>
+                  We&apos;re Hiring
+                </div>
+                <h2 className="font-display font-bold text-white leading-tight mb-4" style={{ fontSize: 'clamp(28px,4vw,52px)' }}>
+                  Build the future<br />of agentic<br />infrastructure.
                 </h2>
-                <p className="text-base mb-8 max-w-md" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                  If you want to build the infrastructure layer for the next wave of AI systems, come work with us.
-                  Remote-first, well-funded, small team.
+                <p className="text-base mb-8 max-w-md" style={{ color: 'rgba(196,181,253,0.65)' }}>
+                  If you want to build the economic layer for autonomous agents — using Stellar, Soroban,
+                  and open protocols — come work with us. Remote-first, early team.
                 </p>
                 <div className="flex gap-3">
-                  <button className="font-semibold text-sm px-7 py-3.5 rounded-xl text-accent"
-                    style={{ background: '#fff', boxShadow: '0 8px 32px rgba(0,0,0,0.25)' }}>
+                  <a href="/careers" className="font-bold text-sm px-7 py-3.5 rounded-xl transition-all"
+                    style={{ background: '#A8FF3E', color: '#0A0A0F', boxShadow: '0 8px 32px rgba(168,255,62,0.25)' }}>
                     See open roles →
-                  </button>
-                  <button className="font-medium text-sm px-7 py-3.5 rounded-xl text-white"
-                    style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)' }}>
+                  </a>
+                  <a href="/contact" className="font-medium text-sm px-7 py-3.5 rounded-xl text-white transition-all"
+                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
                     Contact us
-                  </button>
+                  </a>
                 </div>
               </div>
               <div className="hidden lg:flex items-center justify-center">
@@ -285,56 +266,48 @@ export default function AboutPage() {
 function MissionIllustration() {
   return (
     <svg width="340" height="260" viewBox="0 0 340 260" fill="none" aria-hidden="true">
-      {/* Central hexagon */}
       <polygon points="170,30 220,58 220,114 170,142 120,114 120,58"
-        fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-      <text x="170" y="88" textAnchor="middle" fill="white" fontSize="10" fontFamily="DM Sans" fontWeight="600">AEGIS</text>
-      <text x="170" y="103" textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize="7" fontFamily="JetBrains Mono">eval infra</text>
+        fill="rgba(124,58,237,0.12)" stroke="rgba(124,58,237,0.4)" strokeWidth="1.2" />
+      <text x="170" y="86" textAnchor="middle" fill="#C4B5FD" fontSize="10" fontFamily="Bricolage Grotesque" fontWeight="700">PRAGMA</text>
+      <text x="170" y="100" textAnchor="middle" fill="rgba(196,181,253,0.4)" fontSize="7" fontFamily="JetBrains Mono">economic + cognitive OS</text>
 
-      {/* Orbiting nodes */}
       {[
-        { cx: 60, cy: 65, label: 'Sandbox', sub: 'Firecracker' },
-        { cx: 280, cy: 65, label: 'LLM Proxy', sub: 'token log' },
-        { cx: 42, cy: 175, label: 'Eval Engine', sub: 'scorers' },
-        { cx: 298, cy: 175, label: 'Telemetry', sub: 'OTel' },
-        { cx: 170, cy: 220, label: 'Transcripts', sub: '90 days' },
+        { cx: 58, cy: 65, label: 'Stellar', sub: 'Payments', color: '#A8FF3E' },
+        { cx: 282, cy: 65, label: 'Qdrant', sub: 'Memory', color: '#818CF8' },
+        { cx: 42, cy: 175, label: 'Soroban', sub: 'Guardrails', color: '#C4B5FD' },
+        { cx: 298, cy: 175, label: 'x402', sub: 'Protocol', color: '#F59E0B' },
+        { cx: 170, cy: 222, label: 'Roku', sub: 'Default agent', color: '#34D399' },
       ].map((node) => (
         <g key={node.label}>
           <line x1={node.cx} y1={node.cy} x2="170" y2="86"
-            stroke="rgba(255,255,255,0.12)" strokeWidth="1" strokeDasharray="3 3" />
+            stroke={node.color + '20'} strokeWidth="1" strokeDasharray="3 3" />
           <rect x={node.cx - 38} y={node.cy - 18} width="76" height="36" rx="8"
-            fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="0.8" />
-          <text x={node.cx} y={node.cy - 4} textAnchor="middle" fill="rgba(255,255,255,0.85)"
-            fontSize="8" fontFamily="DM Sans" fontWeight="600">{node.label}</text>
-          <text x={node.cx} y={node.cy + 8} textAnchor="middle" fill="rgba(255,255,255,0.4)"
-            fontSize="7" fontFamily="JetBrains Mono">{node.sub}</text>
+            fill="rgba(255,255,255,0.04)" stroke={node.color + '40'} strokeWidth="0.8" />
+          <text x={node.cx} y={node.cy - 4} textAnchor="middle" fill={node.color} fontSize="8" fontFamily="DM Sans" fontWeight="600">{node.label}</text>
+          <text x={node.cx} y={node.cy + 8} textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="7" fontFamily="JetBrains Mono">{node.sub}</text>
         </g>
       ))}
-
-      {/* Pass rate arc */}
-      <path d="M 140,86 A 30,30 0 0 1 200,86" stroke="#34D399" strokeWidth="2" fill="none" />
-      <circle cx="200" cy="86" r="2.5" fill="#34D399" />
     </svg>
   )
 }
 
 function OpenRolesIllustration() {
-  const roles = ['Infra Engineer', 'ML Research', 'Product Design', 'Developer Rel.']
+  const roles = ['Protocol Engineer', 'AI Researcher', 'Infra Engineer', 'Developer Rel.']
   return (
     <svg width="320" height="220" viewBox="0 0 320 220" fill="none" aria-hidden="true">
       {roles.map((role, i) => (
         <g key={role}>
           <rect x="20" y={20 + i * 48} width="280" height="38" rx="8"
-            fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" strokeWidth="0.8" />
+            fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" strokeWidth="0.8" />
           <rect x="28" y={28 + i * 48} width="22" height="22" rx="6"
-            fill="rgba(255,255,255,0.12)" />
-          <text x="64" y={42 + i * 48} fill="rgba(255,255,255,0.85)"
+            fill="rgba(124,58,237,0.2)" />
+          <text x="64" y={42 + i * 48} fill="rgba(255,255,255,0.7)"
             fontSize="9.5" fontFamily="DM Sans" fontWeight="600">{role}</text>
-          <text x="64" y={54 + i * 48} fill="rgba(255,255,255,0.35)"
+          <text x="64" y={54 + i * 48} fill="rgba(255,255,255,0.25)"
             fontSize="8" fontFamily="JetBrains Mono">Remote · Full-time</text>
-          <rect x="240" y={29 + i * 48} width="48" height="20" rx="6"
-            fill="rgba(52,211,153,0.15)" />
-          <text x="264" y={43 + i * 48} textAnchor="middle" fill="#34D399"
+          <rect x="242" y={29 + i * 48} width="44" height="20" rx="6"
+            fill="rgba(168,255,62,0.12)" />
+          <text x="264" y={43 + i * 48} textAnchor="middle" fill="#A8FF3E"
             fontSize="8" fontFamily="JetBrains Mono">Open</text>
         </g>
       ))}

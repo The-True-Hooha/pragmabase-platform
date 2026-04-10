@@ -21,9 +21,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aegis — Agent Evaluation Infrastructure",
+  title: "Pragmabase — Economic + Cognitive OS for Autonomous Agents",
   description:
-    "Eval infrastructure for AI teams — sandbox execution, regression detection, LLM proxy, and CI integration. Not just scoring. Complete reliability.",
+    "Agents that remember, pay, and coordinate. Pragmabase is the distributed agentic infrastructure platform where autonomous agents think, transact, and evolve — powered by Stellar.",
 };
 
 export default function RootLayout({

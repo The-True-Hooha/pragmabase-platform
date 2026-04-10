@@ -1,51 +1,46 @@
+'use client'
+
 const columns = [
-  {
-    heading: 'PRODUCT',
-    links: ['Features', 'Pricing', 'Changelog', 'Roadmap', 'Status'],
-  },
-  {
-    heading: 'RESOURCES',
-    links: ['Docs', 'API Reference', 'SDK', 'Examples', 'Blog'],
-  },
-  {
-    heading: 'COMPANY',
-    links: ['About', 'Research', 'Careers', 'Security', 'Legal'],
-  },
-  {
-    heading: 'CONNECT',
-    links: ['GitHub', 'Discord', 'X / Twitter', 'LinkedIn', 'Contact'],
-  },
+  { heading: 'PLATFORM', links: [{ label: 'Playground', href: '/playground' }, { label: 'Agent Runtime', href: '/docs/runtime' }, { label: 'Memory Layer', href: '/docs/memory' }, { label: 'Payments (x402)', href: '/docs/payments' }, { label: 'Reliability Lab', href: '/docs/reliability' }] },
+  { heading: 'RESOURCES', links: [{ label: 'Documentation', href: '/docs' }, { label: 'API Reference', href: '/docs/api' }, { label: 'SDK', href: '/docs/sdk' }, { label: 'Examples', href: '/docs/examples' }, { label: 'Blog', href: '/blog' }] },
+  { heading: 'COMPANY',   links: [{ label: 'About', href: '/about' }, { label: 'Research', href: '/research' }, { label: 'Careers', href: '/careers' }, { label: 'Security', href: '/security' }, { label: 'Legal', href: '/legal' }] },
+  { heading: 'CONNECT',   links: [{ label: 'GitHub', href: 'https://github.com' }, { label: 'Discord', href: '#' }, { label: 'X / Twitter', href: '#' }, { label: 'LinkedIn', href: '#' }, { label: 'Contact', href: '/contact' }] },
 ]
 
 export function Footer() {
   return (
-    <footer className="bg-bg border-t border-border">
-      <div className="max-w-[1280px] mx-auto px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-16">
-          {/* Brand column */}
+    <footer style={{ background: '#06060B', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <div className="max-w-[1280px] mx-auto px-6 md:px-8 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-14">
+
+          {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <polygon points="10,1 18.5,6 18.5,14 10,19 1.5,14 1.5,6" fill="rgba(37,99,235,0.12)" />
-                <polygon points="10,1 18.5,6 18.5,14 10,19 1.5,14 1.5,6" stroke="#2563EB" strokeWidth="1.2" fill="none" />
-                <polygon points="10,5.5 14.5,8.5 14.5,12 10,15 5.5,12 5.5,8.5" fill="#2563EB" />
+            <a href="/" className="flex items-center gap-2.5 mb-4 w-fit group">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="2" width="9" height="9" rx="2" fill="#7C3AED"/>
+                <rect x="13" y="2" width="9" height="9" rx="2" fill="#A8FF3E" fillOpacity="0.8"/>
+                <rect x="2" y="13" width="9" height="9" rx="2" fill="#A8FF3E" fillOpacity="0.25"/>
+                <rect x="13" y="13" width="9" height="9" rx="2" fill="#7C3AED" fillOpacity="0.4"/>
               </svg>
-              <span className="font-display font-bold text-ink text-sm">aegis</span>
-            </div>
-            <p className="text-xs text-muted leading-relaxed">
-              Eval infrastructure for AI teams. Stripe for agent reliability.
+              <span className="font-display font-bold text-sm text-white group-hover:text-[#C4B5FD] transition-colors">
+                pragmabase
+              </span>
+            </a>
+            <p className="text-xs leading-relaxed max-w-[180px]" style={{ color: 'rgba(255,255,255,0.25)' }}>
+              The economic + cognitive OS for autonomous agents. Powered by Stellar.
             </p>
           </div>
 
-          {columns.map((col) => (
+          {columns.map(col => (
             <div key={col.heading}>
-              <p className="text-xs uppercase tracking-widest text-muted font-mono mb-4">{col.heading}</p>
+              <p className="font-mono text-[9px] font-bold uppercase tracking-widest mb-4" style={{ color: 'rgba(255,255,255,0.2)' }}>{col.heading}</p>
               <ul className="space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-sm text-ink hover:text-accent transition-colors">
-                      {link}
-                    </a>
+                {col.links.map(link => (
+                  <li key={link.label}>
+                    <a href={link.href} className="text-sm transition-colors" style={{ color: 'rgba(255,255,255,0.35)' }}
+                      onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.75)')}
+                      onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.35)')}
+                    >{link.label}</a>
                   </li>
                 ))}
               </ul>
@@ -53,15 +48,13 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="flex items-center justify-between border-t border-border pt-8">
-          <div className="flex items-center gap-2">
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <polygon points="10,1 18.5,6 18.5,14 10,19 1.5,14 1.5,6" stroke="#2563EB" strokeWidth="1.2" fill="none" />
-              <polygon points="10,5.5 14.5,8.5 14.5,12 10,15 5.5,12 5.5,8.5" fill="#2563EB" />
-            </svg>
-            <span className="font-sans font-medium text-ink text-sm">aegis</span>
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-8" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="flex items-center gap-5 font-mono text-[10px]" style={{ color: 'rgba(255,255,255,0.18)' }}>
+            <span>Built on Stellar</span><span>·</span><span>Qdrant Memory</span><span>·</span><span>x402 Protocol</span>
           </div>
-          <p className="text-xs text-muted font-mono">© {new Date().getFullYear()} Aegis. All rights reserved.</p>
+          <p className="font-mono text-xs" style={{ color: 'rgba(255,255,255,0.18)' }}>
+            © {new Date().getFullYear()} Pragmabase. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

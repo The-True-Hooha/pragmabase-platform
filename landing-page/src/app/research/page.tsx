@@ -3,175 +3,180 @@ import { Footer } from '@/components/footer'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Research — Aegis',
-  description: 'Open benchmarks, eval methodologies, and findings from the Aegis research team.',
+  title: 'Research — Pragmabase',
+  description: 'Open research on agentic economics, memory architectures, and autonomous system reliability.',
 }
 
 const papers = [
   {
-    title: 'AgentBench v2: A Standardized Benchmark for Production Agent Evaluation',
-    authors: ['Amara Osei', 'Priya Sundaram'],
+    title: 'Dual-State Agents: Economic + Cognitive Architecture for Autonomous Systems',
+    authors: ['David Ogar', 'Rin Takahashi'],
+    date: 'Mar 2025',
+    tags: ['Agent Architecture', 'Economic Systems'],
+    abstract:
+      'We introduce the dual-state agent model — a framework where autonomous agents maintain both a cognitive state (vector memory) and an economic state (Stellar wallet). We show that economically-aware agents make measurably better resource allocation decisions under constrained budgets.',
+    color: '#C4B5FD',
+  },
+  {
+    title: 'x402: A Pay-Per-Action Protocol for Autonomous Agent Economies',
+    authors: ['Priya Mehta', 'Lars Hoffmann'],
     date: 'Feb 2025',
-    tags: ['Benchmarking', 'Eval Methodology'],
+    tags: ['x402 Protocol', 'Micropayments', 'Stellar'],
     abstract:
-      'We present AgentBench v2, a standardized eval suite of 47 tasks designed to measure agent reliability in production-like conditions. Unlike capability benchmarks, AgentBench v2 focuses on consistency, regression detection, and tool-call correctness.',
-    link: '#',
+      'We present x402, an HTTP-native payment protocol that enables agents to pay for API calls, data access, and compute without API keys. Built on Stellar\'s fast settlement layer, x402 enables sub-second micropayments at fractions of a cent per action.',
+    color: '#A8FF3E',
   },
   {
-    title: 'Sandbox Isolation for Agent Workloads: Performance vs. Security Trade-offs',
-    authors: ['Leo Hartmann', 'Priya Sundaram'],
+    title: 'Persistent Vector Memory in Multi-Agent Systems: Compounding Knowledge Over Time',
+    authors: ['Adebayo Okafor', 'Rin Takahashi'],
     date: 'Jan 2025',
-    tags: ['Infrastructure', 'Security', 'Firecracker'],
+    tags: ['Memory Architecture', 'Qdrant', 'Multi-Agent'],
     abstract:
-      'We characterize the performance overhead of full VM isolation for AI agent eval workloads using Firecracker microVMs. We show that with targeted optimizations, cold start times can be reduced to under 2 seconds while maintaining complete memory and network isolation.',
-    link: '#',
+      'We study how persistent vector memory affects agent performance over extended operation periods. Our findings show that agents with access to team memory outperform stateless agents by 41% on complex multi-step tasks after 7 days of operation.',
+    color: '#818CF8',
   },
   {
-    title: 'Regression Detection in LLM-based Agent Systems',
-    authors: ['Amara Osei', 'Aryan Mehta'],
+    title: 'Soroban Guardrails: Programmable Safety Constraints for Financial Agents',
+    authors: ['Lars Hoffmann', 'Priya Mehta'],
     date: 'Dec 2024',
-    tags: ['Eval Methodology', 'CI/CD'],
+    tags: ['Soroban', 'Safety', 'Smart Contracts'],
     abstract:
-      'We study the problem of detecting behavioral regressions in language-model based agents across software releases. We propose a pass-rate delta threshold method and evaluate it on 6 real production agent codebases.',
-    link: '#',
+      'We present a framework for encoding agent behavioral constraints as Soroban smart contracts on Stellar. Budget caps, spending velocity limits, and counterparty whitelists can be enforced at the protocol level, eliminating reliance on prompt-level guardrails.',
+    color: '#F59E0B',
   },
 ]
 
 const openSource = [
   {
-    name: 'agentbench',
-    desc: 'The AgentBench eval suite — 47 tasks, open spec, reproducible scoring.',
-    stars: '2.4k',
-    lang: 'Python',
-  },
-  {
-    name: 'aegis-sdk',
-    desc: 'Official TypeScript + Python SDK for the Aegis eval API.',
-    stars: '1.1k',
+    name: 'pragmabase-sdk',
+    desc: 'Official TypeScript + Python SDK. Agent runtime, memory client, wallet integration.',
+    stars: '1.8k',
     lang: 'TypeScript',
+    color: '#A8FF3E',
   },
   {
-    name: 'sandbox-runner',
-    desc: 'The open-source Firecracker sandbox runner used inside Aegis.',
-    stars: '890',
-    lang: 'Rust',
+    name: 'x402-protocol',
+    desc: 'Reference implementation of the x402 pay-per-action HTTP protocol on Stellar.',
+    stars: '2.1k',
+    lang: 'TypeScript',
+    color: '#A8FF3E',
   },
   {
-    name: 'eval-scorers',
-    desc: 'Pluggable eval scorer library: exact match, LLM-as-judge, tool-call validators.',
-    stars: '640',
+    name: 'roku-agent',
+    desc: 'The default Pragmabase agent — financially-aware, memory-augmented, open-source.',
+    stars: '940',
     lang: 'Python',
+    color: '#C4B5FD',
+  },
+  {
+    name: 'reliability-lab',
+    desc: 'Failure simulation engine. Inject adversarial prompts, test hallucinations, audit decisions.',
+    stars: '720',
+    lang: 'Rust',
+    color: '#FB923C',
   },
 ]
 
 const langColor: Record<string, string> = {
-  Python: '#3B82F6',
-  TypeScript: '#2563EB',
-  Rust: '#EA580C',
+  TypeScript: '#A8FF3E',
+  Python: '#818CF8',
+  Rust: '#FB923C',
 }
 
 export default function ResearchPage() {
   return (
     <>
       <Nav />
-      <main>
-        {/* Header */}
-        <section
-          className="relative py-20 overflow-hidden"
-          style={{ background: 'linear-gradient(160deg, #0F1F5C 0%, #1740A6 45%, #2563EB 100%)' }}
-        >
-          <svg className="absolute inset-0 w-full h-full opacity-[0.12]" aria-hidden="true">
-            <defs>
-              <pattern id="research-grid" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
-                <path d="M 48 0 L 0 0 0 48" fill="none" stroke="white" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#research-grid)" />
-          </svg>
+      <main style={{ background: '#0A0A0F' }}>
 
-          <div className="relative max-w-[1280px] mx-auto px-8">
-            <div className="flex justify-between text-xs uppercase tracking-widest mb-10 pb-4 font-mono"
-              style={{ color: 'rgba(255,255,255,0.3)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-              <span>RESEARCH</span>
-              <span>AEGIS</span>
+        {/* Header */}
+        <section className="relative py-20 overflow-hidden" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
+            backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
+          }} />
+          <div className="absolute top-0 right-1/4 w-[500px] h-[400px] pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse, rgba(168,255,62,0.06) 0%, transparent 65%)' }} />
+
+          <div className="relative max-w-[1280px] mx-auto px-6 md:px-8">
+            <div className="flex justify-between text-xs uppercase tracking-widest mb-12 pb-4 font-mono"
+              style={{ color: 'rgba(255,255,255,0.18)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+              <span>Research</span>
+              <span>Pragmabase</span>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1
-                  className="font-display font-extrabold text-white leading-tight mb-4"
-                  style={{ fontSize: 'clamp(32px, 4.5vw, 60px)' }}
-                >
-                  Open research on<br />agent reliability.
+                <div className="inline-block font-mono text-[10px] font-bold uppercase tracking-widest mb-5 px-2.5 py-1.5 rounded-full"
+                  style={{ background: 'rgba(196,181,253,0.1)', border: '1px solid rgba(196,181,253,0.2)', color: '#C4B5FD' }}>
+                  Open Research
+                </div>
+                <h1 className="font-display font-bold text-white leading-tight mb-5" style={{ fontSize: 'clamp(32px,4.5vw,58px)' }}>
+                  The science behind<br />agentic economics.
                 </h1>
-                <p className="text-base" style={{ color: 'rgba(255,255,255,0.55)', maxWidth: '460px' }}>
-                  We publish our benchmarks, eval methodologies, and infrastructure findings openly.
-                  Good science requires reproducibility.
+                <p className="text-base leading-relaxed mb-8 max-w-md" style={{ color: '#6B6B85' }}>
+                  We publish our architecture papers, protocol specs, and benchmark findings openly.
+                  Good infrastructure is built on reproducible science.
                 </p>
-                <div className="flex gap-6 mt-6">
-                  {[{ val: '3', lbl: 'Papers' }, { val: '4', lbl: 'Open repos' }, { val: '47', lbl: 'Benchmark tasks' }].map((s) => (
+                <div className="flex gap-8">
+                  {[
+                    { val: '4', lbl: 'Papers' },
+                    { val: '4', lbl: 'Open repos' },
+                    { val: '5.5k+', lbl: 'GitHub stars' },
+                  ].map((s) => (
                     <div key={s.lbl}>
                       <div className="font-mono font-bold text-2xl text-white">{s.val}</div>
-                      <div className="text-xs font-mono uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.35)' }}>{s.lbl}</div>
+                      <div className="text-xs font-mono uppercase tracking-wider mt-0.5" style={{ color: 'rgba(255,255,255,0.25)' }}>{s.lbl}</div>
                     </div>
                   ))}
                 </div>
               </div>
+
               <div className="hidden lg:flex items-center justify-center">
                 <ResearchIllustration />
               </div>
             </div>
           </div>
-
-          <div aria-hidden="true" style={{ lineHeight: 0, marginTop: '48px' }}>
-            <svg viewBox="0 0 1440 56" preserveAspectRatio="none" className="w-full block" style={{ height: '56px' }}>
-              <path d="M0,28 C360,56 720,0 1080,28 C1260,42 1380,14 1440,28 L1440,56 L0,56 Z" fill="#F4F7FF" />
-            </svg>
-          </div>
         </section>
 
         {/* Papers */}
-        <section className="py-20 bg-bg-alt">
-          <div className="max-w-[1280px] mx-auto px-8">
-            <div className="flex justify-between text-xs uppercase tracking-widest text-muted mb-12 pb-4 border-b border-border font-mono">
+        <section className="py-20" style={{ background: '#0F0F18' }}>
+          <div className="max-w-[1280px] mx-auto px-6 md:px-8">
+            <div className="flex justify-between text-xs uppercase tracking-widest mb-12 pb-4 font-mono"
+              style={{ color: 'rgba(255,255,255,0.18)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
               <span>Publications</span>
+              <span>{papers.length} papers</span>
             </div>
             <div className="space-y-4">
               {papers.map((paper, i) => (
-                <div
-                  key={i}
-                  className="bg-white border border-border rounded-2xl p-8 hover:border-accent transition-colors group"
-                >
+                <div key={i} className="rounded-2xl p-7 group transition-all duration-300"
+                  style={{ background: '#14141F', border: `1px solid ${paper.color}18` }}>
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-4">
                         {paper.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded"
-                            style={{ background: 'rgba(37,99,235,0.08)', color: '#2563EB' }}
-                          >
+                          <span key={tag} className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full"
+                            style={{ background: paper.color + '12', color: paper.color }}>
                             {tag}
                           </span>
                         ))}
-                        <span className="text-xs text-muted font-mono">{paper.date}</span>
+                        <span className="text-xs font-mono" style={{ color: 'rgba(255,255,255,0.25)' }}>{paper.date}</span>
                       </div>
-                      <h3 className="font-display font-bold text-lg text-ink leading-snug mb-3 group-hover:text-accent transition-colors">
+                      <h3 className="font-display font-bold text-lg leading-snug mb-3" style={{ color: '#EDECF4' }}>
                         {paper.title}
                       </h3>
-                      <p className="text-sm text-muted leading-relaxed mb-4">{paper.abstract}</p>
+                      <p className="text-sm leading-relaxed mb-4" style={{ color: '#6B6B85' }}>{paper.abstract}</p>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-muted">By</span>
+                        <span className="text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>By</span>
                         {paper.authors.map((a, j) => (
-                          <span key={a} className="text-xs font-medium text-ink">
+                          <span key={a} className="text-xs font-medium" style={{ color: '#9E9EB8' }}>
                             {a}{j < paper.authors.length - 1 ? ',' : ''}
                           </span>
                         ))}
                       </div>
                     </div>
-                    <a
-                      href={paper.link}
-                      className="shrink-0 border border-border text-ink text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-bg-alt hover:border-accent hover:text-accent transition-colors"
-                    >
+                    <a href="#" className="shrink-0 text-sm font-medium px-5 py-2.5 rounded-xl transition-all"
+                      style={{ border: `1px solid ${paper.color}30`, color: paper.color }}>
                       Read paper →
                     </a>
                   </div>
@@ -182,41 +187,34 @@ export default function ResearchPage() {
         </section>
 
         {/* Open source */}
-        <section className="py-20 bg-bg">
-          <div className="max-w-[1280px] mx-auto px-8">
-            <div className="flex justify-between text-xs uppercase tracking-widest text-muted mb-12 pb-4 border-b border-border font-mono">
+        <section className="py-20" style={{ background: '#0A0A0F', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="max-w-[1280px] mx-auto px-6 md:px-8">
+            <div className="flex justify-between text-xs uppercase tracking-widest mb-12 pb-4 font-mono"
+              style={{ color: 'rgba(255,255,255,0.18)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
               <span>Open Source</span>
             </div>
-            <h2 className="font-display font-bold text-[28px] md:text-[40px] text-ink leading-tight mb-12">
+            <h2 className="font-display font-bold leading-tight mb-12" style={{ fontSize: 'clamp(24px,3.5vw,40px)', color: '#EDECF4' }}>
               Everything we build,<br />
-              <span className="text-accent">open by default.</span>
+              <span style={{ color: '#A8FF3E' }}>open by default.</span>
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-border rounded-2xl overflow-hidden">
-              {openSource.map((repo, i) => (
-                <a
-                  key={repo.name}
-                  href="#"
-                  className={`block p-7 bg-white hover:bg-bg-alt transition-colors group ${
-                    i % 2 === 0 ? 'border-r border-border' : ''
-                  } ${i < 2 ? 'border-b border-border' : ''}`}
-                >
+            <div className="grid md:grid-cols-2 gap-4">
+              {openSource.map((repo) => (
+                <a key={repo.name} href="#" className="block rounded-2xl p-6 group transition-all duration-300 hover:-translate-y-0.5"
+                  style={{ background: '#14141F', border: `1px solid ${repo.color}18` }}>
                   <div className="flex items-start justify-between mb-3">
-                    <span className="font-mono text-sm font-semibold text-accent group-hover:underline">
-                      aegis / {repo.name}
+                    <span className="font-mono text-sm font-semibold" style={{ color: repo.color }}>
+                      pragmabase / {repo.name}
                     </span>
-                    <div className="flex items-center gap-1 text-xs text-muted font-mono">
+                    <div className="flex items-center gap-1 text-xs font-mono" style={{ color: 'rgba(255,255,255,0.25)' }}>
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                       </svg>
                       {repo.stars}
                     </div>
                   </div>
-                  <p className="text-sm text-muted leading-relaxed mb-4">{repo.desc}</p>
-                  <span
-                    className="inline-flex items-center gap-1.5 text-[10px] font-mono"
-                    style={{ color: langColor[repo.lang] ?? '#6B7280' }}
-                  >
-                    <span className="w-2 h-2 rounded-full" style={{ background: langColor[repo.lang] ?? '#6B7280' }} />
+                  <p className="text-sm leading-relaxed mb-4" style={{ color: '#6B6B85' }}>{repo.desc}</p>
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-mono" style={{ color: langColor[repo.lang] }}>
+                    <span className="w-2 h-2 rounded-full" style={{ background: langColor[repo.lang] }} />
                     {repo.lang}
                   </span>
                 </a>
@@ -231,18 +229,13 @@ export default function ResearchPage() {
 }
 
 function ResearchIllustration() {
-  const bars = [62, 71, 75, 79, 82, 88, 85, 91, 89, 95, 93, 97]
+  const bars = [55, 62, 68, 71, 74, 78, 81, 85, 83, 88, 91, 94]
   const maxH = 80
   return (
     <svg width="320" height="200" viewBox="0 0 320 200" fill="none" aria-hidden="true">
-      {/* Chart card */}
       <rect x="20" y="10" width="280" height="130" rx="12"
-        fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" strokeWidth="1" />
-
-      {/* Chart title */}
-      <text x="36" y="34" fill="rgba(255,255,255,0.5)" fontSize="8" fontFamily="JetBrains Mono">AgentBench pass rate · v1 → v2</text>
-
-      {/* Bars */}
+        fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+      <text x="36" y="34" fill="rgba(255,255,255,0.3)" fontSize="8" fontFamily="JetBrains Mono">Agent performance · dual-state model</text>
       {bars.map((v, i) => {
         const h = (v / 100) * maxH
         const x = 36 + i * 21
@@ -251,42 +244,32 @@ function ResearchIllustration() {
         return (
           <g key={i}>
             <rect x={x} y={y} width="14" height={h} rx="3"
-              fill={isLast ? '#34D399' : `rgba(37,99,235,${0.3 + i * 0.055})`} />
+              fill={isLast ? '#A8FF3E' : `rgba(124,58,237,${0.2 + i * 0.06})`} />
             {isLast && (
-              <>
-                <text x={x + 7} y={y - 5} textAnchor="middle" fill="#34D399" fontSize="7" fontFamily="JetBrains Mono" fontWeight="600">
-                  {v}%
-                </text>
-              </>
+              <text x={x + 7} y={y - 5} textAnchor="middle" fill="#A8FF3E" fontSize="7" fontFamily="JetBrains Mono" fontWeight="600">
+                {v}%
+              </text>
             )}
           </g>
         )
       })}
-
-      {/* Horizontal grid lines */}
       {[25, 50, 75, 100].map((pct) => (
-        <line key={pct}
-          x1="36" x2="284"
-          y1={110 - (pct / 100) * maxH}
-          y2={110 - (pct / 100) * maxH}
-          stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+        <line key={pct} x1="36" x2="284"
+          y1={110 - (pct / 100) * maxH} y2={110 - (pct / 100) * maxH}
+          stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
       ))}
-
-      {/* Metric badges */}
-      <rect x="20" y="155" width="88" height="38" rx="8"
-        fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" strokeWidth="0.8" />
-      <text x="64" y="170" textAnchor="middle" fill="#34D399" fontSize="13" fontFamily="JetBrains Mono" fontWeight="700">#1</text>
-      <text x="64" y="183" textAnchor="middle" fill="rgba(255,255,255,0.35)" fontSize="7" fontFamily="JetBrains Mono">AgentBench</text>
-
-      <rect x="116" y="155" width="88" height="38" rx="8"
-        fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" strokeWidth="0.8" />
-      <text x="160" y="170" textAnchor="middle" fill="#93C5FD" fontSize="13" fontFamily="JetBrains Mono" fontWeight="700">47</text>
-      <text x="160" y="183" textAnchor="middle" fill="rgba(255,255,255,0.35)" fontSize="7" fontFamily="JetBrains Mono">eval tasks</text>
-
-      <rect x="212" y="155" width="88" height="38" rx="8"
-        fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" strokeWidth="0.8" />
-      <text x="256" y="170" textAnchor="middle" fill="#FCD34D" fontSize="13" fontFamily="JetBrains Mono" fontWeight="700">10M+</text>
-      <text x="256" y="183" textAnchor="middle" fill="rgba(255,255,255,0.35)" fontSize="7" fontFamily="JetBrains Mono">runs logged</text>
+      {[
+        { x: 30, y: 155, val: '+41%', label: 'vs stateless', color: '#A8FF3E' },
+        { x: 120, y: 155, val: '< 100ms', label: 'settlement', color: '#C4B5FD' },
+        { x: 220, y: 155, val: '99.9%', label: 'uptime', color: '#818CF8' },
+      ].map((m) => (
+        <g key={m.label}>
+          <rect x={m.x} y={m.y} width="85" height="38" rx="8"
+            fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" strokeWidth="0.8" />
+          <text x={m.x + 42.5} y={m.y + 16} textAnchor="middle" fill={m.color} fontSize="12" fontFamily="JetBrains Mono" fontWeight="700">{m.val}</text>
+          <text x={m.x + 42.5} y={m.y + 28} textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="7" fontFamily="JetBrains Mono">{m.label}</text>
+        </g>
+      ))}
     </svg>
   )
 }
