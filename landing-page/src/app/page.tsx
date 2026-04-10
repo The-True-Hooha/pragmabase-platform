@@ -26,7 +26,7 @@ export default function Home() {
         <HowItWorks />
         <UseCases />
         <ReliabilityLab />
-        <SocialProof />
+        {/* <SocialProof /> */}
         <CTA />
       </main>
       <Footer />
