@@ -1,11 +1,49 @@
 'use client'
 
 const columns = [
-  { heading: 'PLATFORM', links: [{ label: 'Playground', href: '/playground' }, { label: 'Agent Runtime', href: '/docs/runtime' }, { label: 'Memory Layer', href: '/docs/memory' }, { label: 'Payments (x402)', href: '/docs/payments' }, { label: 'Reliability Lab', href: '/docs/reliability' }] },
-  { heading: 'RESOURCES', links: [{ label: 'Documentation', href: '/docs' }, { label: 'API Reference', href: '/docs/api' }, { label: 'SDK', href: '/docs/sdk' }, { label: 'Examples', href: '/docs/examples' }, { label: 'Blog', href: '/blog' }] },
-  { heading: 'COMPANY',   links: [{ label: 'About', href: '/about' }, { label: 'Research', href: '/research' }, { label: 'Careers', href: '/careers' }, { label: 'Security', href: '/security' }, { label: 'Legal', href: '/legal' }] },
-  { heading: 'CONNECT',   links: [{ label: 'GitHub', href: 'https://github.com' }, { label: 'Discord', href: '#' }, { label: 'X / Twitter', href: '#' }, { label: 'LinkedIn', href: '#' }, { label: 'Contact', href: '/contact' }] },
-]
+  {
+    heading: "PLATFORM",
+    links: [
+      { label: "Playground", href: "/playground" },
+      { label: "Agent Runtime", href: "/docs/runtime" },
+      { label: "Memory Layer", href: "/docs/memory" },
+      { label: "Payments (x402)", href: "/docs/payments" },
+      { label: "Reliability Lab", href: "/docs/reliability" },
+    ],
+  },
+  {
+    heading: "RESOURCES",
+    links: [
+      { label: "Documentation", href: "/docs" },
+      { label: "API Reference", href: "/docs/api" },
+      { label: "SDK", href: "/docs/sdk" },
+      { label: "Examples", href: "/docs/examples" },
+      { label: "Blog", href: "/blog" },
+    ],
+  },
+  {
+    heading: "COMPANY",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Research", href: "/research" },
+      { label: "Security", href: "/security" },
+      { label: "Legal", href: "/legal" },
+    ],
+  },
+  {
+    heading: "CONNECT",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/The-True-Hooha/pragmabase-platform",
+      },
+      { label: "Discord", href: "#" },
+      { label: "X / Twitter", href: "#" },
+      { label: "LinkedIn", href: "#" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+];
 
 export function Footer() {
   return (
